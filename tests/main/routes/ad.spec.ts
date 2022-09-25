@@ -25,4 +25,14 @@ describe('Ad Routes', () => {
       expect(body).toHaveLength(1);
     });
   });
+
+  describe('GET /ads/:id/discord', () => {
+    it('should return 200 with ads', async () => {
+      const ad = await createAd();
+      const { status, body } = await request(app).get(`/ads/${ad.id}/discord`);
+
+      expect(status).toBe(200);
+      expect(body).toBeTruthy();
+    });
+  });
 });
