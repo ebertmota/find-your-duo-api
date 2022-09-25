@@ -25,6 +25,15 @@ describe('ListAds useCase', () => {
     expect(adsRepository.listAds).toHaveBeenCalledTimes(1);
   });
 
+  it('should rethrow if AdsRepository listAds throws', async () => {
+    const error = new Error('repository fails');
+    adsRepository.listAds.mockRejectedValueOnce(error);
+
+    const promise = sut();
+
+    expect(promise).rejects.toThrow(error);
+  });
+
   it('should return ads with formatted hourStart', async () => {
     const result = await sut();
 
