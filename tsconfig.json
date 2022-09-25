@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "rootDirs": ["src", "tests"],
+    "outDir": "dist",
+    "strict": true,
+    "skipLibCheck": true,
+    "strictPropertyInitialization": false,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"],
+      "@/tests/*": ["../tests/*"]
+    },
+  },
+  "include": [ "src", "tests"]
+}
