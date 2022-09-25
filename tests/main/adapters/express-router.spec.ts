@@ -33,6 +33,15 @@ describe('ExpressRouter', () => {
     expect(controller.handle).toHaveBeenCalledTimes(1);
   });
 
+  it('should call handle with correct request using route params', async () => {
+    const params = { any: 'any_route_param' };
+    const request = getMockReq({ params });
+    await sut(request, res, next);
+
+    expect(controller.handle).toHaveBeenCalledWith(params);
+    expect(controller.handle).toHaveBeenCalledTimes(1);
+  });
+
   it('should call handle with empty request', async () => {
     const request = getMockReq();
     await sut(request, res, next);
