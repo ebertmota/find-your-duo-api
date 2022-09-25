@@ -1,9 +1,18 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { env } from '@/main/helpers';
 import { PrismaClient } from '@prisma/client';
+import { URL } from 'url';
 import { ConnectionNotFoundError } from './errors';
+
+type GenerateDatabaseURLInput = {
+  schema?: string;
+};
 
 export class PgConnection {
   private static instance?: PgConnection;
-  private connection?: PrismaClient;
+  public connection?: PrismaClient;
+
+  private constructor() {}
 
   static getInstance(): PgConnection {
     if (PgConnection.instance === undefined)
@@ -11,10 +20,24 @@ export class PgConnection {
     return PgConnection.instance;
   }
 
+  static generateDatabaseURL(input?: GenerateDatabaseURLInput): string {
+    const { username, password, host, port, database } = env.postgres;
+    const baseUrl = `postgresql://${username}:${password}@${host}:${port}/${database}`;
+
+    const url = new URL(baseUrl);
+    url.searchParams.append('schema', input?.schema || database);
+
+    return url.toString();
+  }
+
   async connect(): Promise<void> {
     if (this.connection === undefined) {
-      this.connection = new PrismaClient();
-      this.connection.$connect();
+      this.connection = new PrismaClient({
+        datasources: {
+          db: { url: PgConnection.generateDatabaseURL() },
+        },
+      });
+      await this.connection.$connect();
     }
   }
 
