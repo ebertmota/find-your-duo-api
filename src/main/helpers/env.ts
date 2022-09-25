@@ -29,7 +29,6 @@ export const verifyEnvironmentVariables = (): void => {
     'POSTGRESQL_DATABASE',
     'POSTGRESQL_PORT',
     'POSTGRESQL_USERNAME',
-    'DATABASE_URL',
   ];
 
   checkRequiredVars(requiredVars);
