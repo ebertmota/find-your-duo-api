@@ -23,6 +23,15 @@ describe('ListAdsController', () => {
     expect(listAds).toHaveBeenCalledTimes(1);
   });
 
+  it('should rethrow if ListAds throws', async () => {
+    const error = new Error('useCase fails');
+    listAds.mockRejectedValueOnce(error);
+
+    const promise = sut.perform();
+
+    expect(promise).rejects.toThrow(error);
+  });
+
   it('should return ads on success', async () => {
     const result = await sut.perform();
 
