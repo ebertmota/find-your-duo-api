@@ -12,7 +12,7 @@ export class PgAdRepository
 
   async getDiscord(input: GetAdDiscord.Input): Promise<GetAdDiscord.Output> {
     const { ad: adRepository } = this.getRepository();
-    return adRepository.findUniqueOrThrow({
+    return adRepository.findUnique({
       where: {
         id: input.id,
       },

@@ -15,7 +15,7 @@ export namespace GetAdDiscord {
 
   export type Output = {
     discord: string;
-  };
+  } | null;
 }
 
 export interface GetAdDiscord {
