@@ -1,7 +1,7 @@
 
 version: '3.8'
 services:
-  fiquelivre-postgresql:
+  findYourDuo-postgresql:
     image: bitnami/postgresql:latest
     container_name: findYourDuo-postgresql
     restart: always
