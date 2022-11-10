@@ -12,7 +12,7 @@ export namespace FindGamesWithAdsCount {
 }
 
 export interface FindGamesWithAdsCount {
-  findGamesWithAdsCount: (
+  findManyWithAdsCount: (
     input: FindGamesWithAdsCount.Input,
   ) => Promise<FindGamesWithAdsCount.Output>;
 }

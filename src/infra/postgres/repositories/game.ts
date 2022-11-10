@@ -5,7 +5,7 @@ export class PgGameRepository
   extends PgRepository
   implements FindGamesWithAdsCount
 {
-  async findGamesWithAdsCount(): Promise<FindGamesWithAdsCount.Output> {
+  async findManyWithAdsCount(): Promise<FindGamesWithAdsCount.Output> {
     const { game: gameRepository } = this.getRepository();
     const games = await gameRepository.findMany({
       include: {
