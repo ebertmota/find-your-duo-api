@@ -1,9 +1,8 @@
-import { createAd } from '@/../tests/helpers/mocks/entities';
-import { createGame, Postgres } from '@/../tests/helpers/postgres';
+import { createGame, createAd, Postgres } from '@/tests/helpers/postgres';
 import { CreateAd } from '@/domain/contracts/repositories';
 import { PgAdRepository } from '@/infra/postgres/repositories';
 
-describe('AdRepository', () => {
+describe('PgAdRepository', () => {
   let sut: PgAdRepository;
 
   beforeAll(async () => {
