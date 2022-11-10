@@ -15,11 +15,19 @@ export const makeFakeAd = (): Ad => ({
   createdAt: new Date(),
 });
 
-type CreateAdInput = {
-  gameId?: string;
-};
+namespace CreateAd {
+  export type Input = {
+    gameId?: string;
+  };
 
-export const createAd = async (input: CreateAdInput = {}): Promise<Ad> => {
+  export type Output = {
+    ad: Ad;
+  };
+}
+
+export const createAd = async (
+  input: CreateAd.Input = {},
+): Promise<CreateAd.Output> => {
   const { gameId } = input;
   const connection = Postgres.getConnection();
 
@@ -43,5 +51,5 @@ export const createAd = async (input: CreateAdInput = {}): Promise<Ad> => {
     },
   });
 
-  return ad;
+  return { ad };
 };
