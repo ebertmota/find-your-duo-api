@@ -1,7 +1,6 @@
 import request from 'supertest';
 import { app } from '@/main/config/app';
-import { Postgres } from '@/tests/helpers/postgres';
-import { createAd } from '../../helpers/mocks/entities';
+import { createAd, Postgres } from '@/tests/helpers/postgres';
 
 describe('Ad Routes', () => {
   beforeAll(async () => {
@@ -28,7 +27,7 @@ describe('Ad Routes', () => {
 
   describe('GET /ads/:id/discord', () => {
     it('should return 200 with ads', async () => {
-      const ad = await createAd();
+      const { ad } = await createAd();
       const { status, body } = await request(app).get(`/ads/${ad.id}/discord`);
 
       expect(status).toBe(200);

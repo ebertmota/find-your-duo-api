@@ -12,7 +12,7 @@ describe('ListAds useCase', () => {
   beforeAll(() => {
     ads = [makeFakeAd()];
     adsRepository = mock();
-    adsRepository.listAds.mockResolvedValue(ads);
+    adsRepository.listAll.mockResolvedValue(ads);
   });
 
   beforeEach(() => {
@@ -22,12 +22,12 @@ describe('ListAds useCase', () => {
   it('should call AdsRepository listAds', async () => {
     await sut();
 
-    expect(adsRepository.listAds).toHaveBeenCalledTimes(1);
+    expect(adsRepository.listAll).toHaveBeenCalledTimes(1);
   });
 
   it('should rethrow if AdsRepository listAds throws', async () => {
     const error = new Error('repository fails');
-    adsRepository.listAds.mockRejectedValueOnce(error);
+    adsRepository.listAll.mockRejectedValueOnce(error);
 
     const promise = sut();
 
