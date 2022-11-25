@@ -1,6 +1,6 @@
 import { ListAdsController } from '@/application/controllers';
 import { Ad } from '@prisma/client';
-import { makeFakeAd } from '../../helpers/mocks/entities';
+import { createFakeAd } from '../../helpers/mocks/entities';
 
 describe('ListAdsController', () => {
   let ads: Ad[];
@@ -8,7 +8,7 @@ describe('ListAdsController', () => {
   let sut: ListAdsController;
 
   beforeAll(() => {
-    ads = [makeFakeAd()];
+    ads = [createFakeAd()];
     listAds = jest.fn();
     listAds.mockResolvedValue(ads);
   });

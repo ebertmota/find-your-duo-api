@@ -1,7 +1,7 @@
 import { ShowAdDiscordController } from '@/application/controllers';
 import { Ad } from '@/domain/entities';
 import { AdNotFoundError } from '@/domain/entities/errors';
-import { makeFakeAd } from '../../helpers/mocks/entities';
+import { createFakeAd } from '../../helpers/mocks/entities';
 
 describe('ShowAdDiscordController', () => {
   let ad: Ad;
@@ -10,7 +10,7 @@ describe('ShowAdDiscordController', () => {
   let sut: ShowAdDiscordController;
 
   beforeAll(() => {
-    ad = makeFakeAd();
+    ad = createFakeAd();
     getAdDiscord = jest.fn();
     getAdDiscord.mockResolvedValue({ discord: ad.discord });
     sutInput = {

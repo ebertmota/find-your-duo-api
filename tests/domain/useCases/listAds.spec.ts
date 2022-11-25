@@ -2,7 +2,7 @@ import { ListAds, setupListAds } from '@/domain/useCases';
 import { ListAllAds } from '@/domain/contracts/repositories';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { Ad } from '@/domain/entities';
-import { makeFakeAd } from '../../helpers/mocks/entities';
+import { createFakeAd } from '../../helpers/mocks/entities';
 
 describe('ListAds useCase', () => {
   let adsRepository: MockProxy<ListAllAds>;
@@ -10,7 +10,7 @@ describe('ListAds useCase', () => {
   let sut: ListAds;
 
   beforeAll(() => {
-    ads = [makeFakeAd()];
+    ads = [createFakeAd()];
     adsRepository = mock();
     adsRepository.listAll.mockResolvedValue(ads);
   });

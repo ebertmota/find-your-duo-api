@@ -2,7 +2,7 @@ import { GetAdDiscord, setupGetAdDiscord } from '@/domain/useCases';
 import { GetAdDiscord as GetAdDiscordRepo } from '@/domain/contracts/repositories';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { Ad } from '@/domain/entities';
-import { makeFakeAd } from '../../helpers/mocks/entities';
+import { createFakeAd } from '../../helpers/mocks/entities';
 
 describe('GetAdDiscord useCase', () => {
   let ad: Ad;
@@ -11,7 +11,7 @@ describe('GetAdDiscord useCase', () => {
   let sut: GetAdDiscord;
 
   beforeAll(() => {
-    ad = makeFakeAd();
+    ad = createFakeAd();
     adsRepository = mock();
     adsRepository.getDiscord.mockResolvedValue({
       discord: ad.discord,

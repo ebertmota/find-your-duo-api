@@ -1,6 +1,6 @@
 import { Ad } from '@/domain/entities';
 
-export const makeFakeAd = (): Ad => ({
+export const createFakeAd = (): Ad => ({
   id: 'any_id',
   discord: 'any_discord',
   gameId: 'any_gameId',
