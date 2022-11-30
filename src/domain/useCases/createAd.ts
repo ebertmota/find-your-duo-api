@@ -1,6 +1,5 @@
 import { CreateAd as AdRepo } from '../contracts/repositories';
 import { Ad } from '../entities';
-import { convertHourStringToMinutes } from '../utils';
 
 type Input = {
   gameId: string;
@@ -28,15 +27,18 @@ export const setupCreateAd: Setup = adRepo => async input => {
     hourEnd,
     useVoiceChannel,
   } = input;
-  const ad = await adRepo.create({
+
+  const data = new Ad({
     gameId,
     name,
     yearsPlaying,
     discord,
-    weekDays: weekDays.join(','),
-    hourStart: convertHourStringToMinutes(hourStart),
-    hourEnd: convertHourStringToMinutes(hourEnd),
-    useVoiceChannel: useVoiceChannel || false,
+    weekDays,
+    hourStart,
+    hourEnd,
+    useVoiceChannel,
   });
-  return ad;
+
+  const createdAd = await adRepo.create(data);
+  return createdAd;
 };

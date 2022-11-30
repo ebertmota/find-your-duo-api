@@ -3,6 +3,7 @@ import { CreateAd as AdRepo } from '@/domain/contracts/repositories';
 import { mock, MockProxy } from 'jest-mock-extended';
 import { Ad } from '@/domain/entities';
 import { createFakeAd } from '@/tests/helpers/mocks/entities';
+import { mocked } from 'jest-mock';
 
 type Input = {
   gameId: string;
@@ -15,16 +16,18 @@ type Input = {
   useVoiceChannel?: boolean;
 };
 
-describe('CreateAd useCase', () => {
+jest.mock('@/domain/entities/ad');
+
+describe('CreateAdUseCase', () => {
   let createdAd: Ad;
-  let adRepository: MockProxy<AdRepo>;
+  let adRepo: MockProxy<AdRepo>;
   let sutInput: Input;
   let sut: CreateAd;
 
   beforeAll(() => {
     createdAd = createFakeAd();
-    adRepository = mock();
-    adRepository.create.mockResolvedValue(createdAd);
+    adRepo = mock();
+    adRepo.create.mockResolvedValue(createdAd);
     sutInput = {
       discord: 'any_discord',
       gameId: 'any_gameId',
@@ -38,23 +41,33 @@ describe('CreateAd useCase', () => {
   });
 
   beforeEach(() => {
-    sut = setupCreateAd(adRepository);
+    sut = setupCreateAd(adRepo);
   });
 
   it('should call AdRepository create with correct input', async () => {
     await sut(sutInput);
 
-    expect(adRepository.create).toHaveBeenCalledWith({
+    expect(mocked(Ad)).toHaveBeenCalledWith({
       gameId: sutInput.gameId,
       name: sutInput.name,
       yearsPlaying: sutInput.yearsPlaying,
       discord: sutInput.discord,
-      weekDays: sutInput.weekDays[0],
+      weekDays: sutInput.weekDays,
       useVoiceChannel: sutInput.useVoiceChannel,
-      hourStart: expect.any(Number),
-      hourEnd: expect.any(Number),
+      hourStart: sutInput.hourStart,
+      hourEnd: sutInput.hourEnd,
     });
-    expect(adRepository.create).toHaveBeenCalledTimes(1);
+    expect(adRepo.create).toHaveBeenCalledWith(mocked(Ad).mock.instances[0]);
+    expect(adRepo.create).toHaveBeenCalledTimes(1);
+  });
+
+  it('should rethrow if AdRepository create throws', async () => {
+    const error = new Error('repository fails');
+    adRepo.create.mockRejectedValueOnce(error);
+
+    const promise = sut(sutInput);
+
+    expect(promise).rejects.toThrow(error);
   });
 
   it('should return created ad on success', async () => {

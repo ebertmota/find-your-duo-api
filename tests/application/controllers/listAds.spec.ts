@@ -32,7 +32,7 @@ describe('ListAdsController', () => {
     expect(promise).rejects.toThrow(error);
   });
 
-  it('should return ads on success', async () => {
+  it('should return 200 and ads on success', async () => {
     const result = await sut.perform();
 
     expect(result).toEqual({

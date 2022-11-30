@@ -20,5 +20,10 @@ module.exports = {
     '<rootDir>/src/domain/entities/**',
     '!<rootDir>/src/main/**',
     '!<rootDir>/src/**/index.ts',
+    '!<rootDir>/src/domain/contracts/**',
+    '!<rootDir>/src/application/errors/**',
+    '!<rootDir>/src/application/helpers/**',
+    '!<rootDir>/src/infra/postgres/helpers/**',
+    '!<rootDir>/src/types.ts',
   ],
 };

@@ -58,6 +58,20 @@ describe('ExpressRouter', () => {
     expect(res.json).toHaveBeenCalledTimes(1);
   });
 
+  it('should respond with 201 and valid data', async () => {
+    controller.handle.mockResolvedValueOnce({
+      statusCode: 201,
+      data: { data: 'created_data' },
+    });
+
+    await sut(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(201);
+    expect(res.status).toHaveBeenCalledTimes(1);
+    expect(res.json).toHaveBeenCalledWith({ data: 'created_data' });
+    expect(res.json).toHaveBeenCalledTimes(1);
+  });
+
   it('should respond with 400 and correct error', async () => {
     controller.handle.mockResolvedValueOnce({
       statusCode: 400,

@@ -39,7 +39,6 @@ describe('PgGameRepository', () => {
 
       expect(result).toHaveLength(1);
       expect(result[0]).toHaveProperty('_count');
-      // eslint-disable-next-line no-underscore-dangle
       expect(result[0]._count).toEqual({
         ads: 2,
       });

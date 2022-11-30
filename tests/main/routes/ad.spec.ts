@@ -1,6 +1,5 @@
-import request from 'supertest';
-import { app } from '@/main/config/app';
 import { createAd, Postgres } from '@/tests/helpers/postgres';
+import { httpRequest } from '../../helpers/http';
 
 describe('Ad Routes', () => {
   beforeAll(async () => {
@@ -18,7 +17,7 @@ describe('Ad Routes', () => {
   describe('GET /ads', () => {
     it('should return 200 with ads', async () => {
       await createAd();
-      const { status, body } = await request(app).get('/ads');
+      const { status, body } = await httpRequest().get('/ads');
 
       expect(status).toBe(200);
       expect(body).toHaveLength(1);
@@ -28,7 +27,7 @@ describe('Ad Routes', () => {
   describe('GET /ads/:id/discord', () => {
     it('should return 200 with ads', async () => {
       const { ad } = await createAd();
-      const { status, body } = await request(app).get(`/ads/${ad.id}/discord`);
+      const { status, body } = await httpRequest().get(`/ads/${ad.id}/discord`);
 
       expect(status).toBe(200);
       expect(body).toBeTruthy();

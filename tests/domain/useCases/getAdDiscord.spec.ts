@@ -4,7 +4,7 @@ import { mock, MockProxy } from 'jest-mock-extended';
 import { Ad } from '@/domain/entities';
 import { createFakeAd } from '../../helpers/mocks/entities';
 
-describe('GetAdDiscord useCase', () => {
+describe('GetAdDiscordUseCase', () => {
   let ad: Ad;
   let adsRepository: MockProxy<GetAdDiscordRepo>;
   let sutInput: { id: string };

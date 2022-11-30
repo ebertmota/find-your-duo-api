@@ -1,4 +1,4 @@
-import { Ad } from '@/domain/entities';
+import { Ad, FormattedAd } from '@/domain/entities';
 
 export const createFakeAd = (): Ad => ({
   id: 'any_id',
@@ -12,3 +12,7 @@ export const createFakeAd = (): Ad => ({
   yearsPlaying: 0,
   createdAt: new Date(),
 });
+
+export const createFakeFormattedAd = (): FormattedAd => {
+  return Ad.format(createFakeAd());
+};

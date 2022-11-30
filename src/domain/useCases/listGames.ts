@@ -16,7 +16,6 @@ export const setupListGames: Setup = gamesRepo => async () => {
   const formattedGames = games.map(game => ({
     ...game,
     _count: undefined,
-    // eslint-disable-next-line no-underscore-dangle
     count: game._count,
   }));
 

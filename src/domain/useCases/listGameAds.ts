@@ -1,17 +1,8 @@
-import { FindManyByGame } from '../contracts/repositories';
-import { convertMinutesToHourString } from '../utils';
+import { Ad, FormattedAd } from '@/domain/entities';
+import { FindManyByGame } from '@/domain/contracts/repositories';
 
 type Input = {
   gameId: string;
-};
-type FormattedAd = {
-  id: string;
-  weekDays: string[];
-  hourStart: string;
-  hourEnd: string;
-  name: string;
-  yearsPlaying: number;
-  useVoiceChannel: boolean;
 };
 type Output = FormattedAd[];
 
@@ -26,12 +17,7 @@ export const setupListGameAds: Setup =
     });
 
     const formattedAds = ads.map(ad => {
-      return {
-        ...ad,
-        weekDays: ad.weekDays.split(','),
-        hourStart: convertMinutesToHourString(ad.hourStart),
-        hourEnd: convertMinutesToHourString(ad.hourEnd),
-      };
+      return Ad.format(ad as Ad);
     });
 
     return formattedAds;

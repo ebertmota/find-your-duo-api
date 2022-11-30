@@ -8,6 +8,6 @@ export const adaptExpressRoute: Adapter = controller => async (req, res) => {
     ...req.body,
     ...req.params,
   });
-  const json = statusCode === 200 ? data : { error: data.message };
+  const json = statusCode < 300 ? data : { error: data.message };
   res.status(statusCode).json(json);
 };
