@@ -1,5 +1,6 @@
 import { ListGameAds } from '@/domain/useCases';
-import { HttpResponse, ok } from '../helpers';
+import { ok } from '../helpers';
+import { HttpResponse } from '../protocols';
 import { Controller } from './controller';
 
 type Input = {

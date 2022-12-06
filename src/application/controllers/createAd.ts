@@ -1,5 +1,6 @@
 import { CreateAd } from '@/domain/useCases';
-import { created, HttpResponse } from '../helpers';
+import { created } from '../helpers';
+import { HttpResponse } from '../protocols';
 import { Controller } from './controller';
 
 type Input = {

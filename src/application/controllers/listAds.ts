@@ -1,5 +1,6 @@
 import { ListAds } from '@/domain/useCases';
-import { HttpResponse, ok } from '../helpers';
+import { ok } from '../helpers';
+import { HttpResponse } from '../protocols';
 import { Controller } from './controller';
 
 export class ListAdsController extends Controller {

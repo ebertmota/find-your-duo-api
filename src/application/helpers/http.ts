@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ForbiddenError, ServerError, UnauthorizedError } from '../errors';
-
-export type HttpResponse<T = any> = { statusCode: number; data: T };
+import { HttpResponse } from '../protocols';
 
 export const ok = <T = any>(data: T): HttpResponse<T> => ({
   statusCode: 200,

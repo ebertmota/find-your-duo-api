@@ -1,6 +1,7 @@
 import { AdNotFoundError } from '@/domain/entities/errors';
 import { GetAdDiscord } from '@/domain/useCases';
-import { badRequest, HttpResponse, ok } from '../helpers';
+import { badRequest, ok } from '../helpers';
+import { HttpResponse } from '../protocols';
 import { Controller } from './controller';
 
 type Input = {
