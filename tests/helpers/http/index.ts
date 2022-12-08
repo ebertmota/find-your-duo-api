@@ -1,4 +1,4 @@
-import { app } from '@/main/config/app';
+import { app } from '@/main/http/config/app';
 import request, { SuperTest } from 'supertest';
 
 export const httpRequest = (): SuperTest<request.Test> => {

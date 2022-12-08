@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { adaptExpressRoute as adaptRoute } from '../adapters';
+import { adaptExpressRoute as adaptRoute } from '@/main/adapters';
 import {
   makeCreateAdController,
   makeListGameAdsController,
   makeListGamesController,
-} from '../factories/application/controllers';
+} from '@/main/factories/application/controllers';
 
 export default (router: Router): void => {
   router.get('/games', adaptRoute(makeListGamesController()));
