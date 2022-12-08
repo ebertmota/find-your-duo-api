@@ -4,11 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd -r dotenv/config --exit-child src/main/server.ts",
-    "db:seed": "yarn prisma db seed",
-    "db:migrate": "yarn prisma migrate deploy",
-    "db:migrate:dev": "yarn prisma migrate dev",
-    "db:view": "npx prisma studio",
+    "dev": "tsnd -r dotenv/config --exit-child src/main/http/server.ts",
+    "prisma-cli": "tsnd -r dotenv/config src/main/helpers/prismaCli.ts execute",
+    "db:seed": "yarn prisma-cli db seed",
+    "db:migrate": "yarn prisma-cli migrate deploy",
+    "db:migrate:dev": "yarn prisma-cli migrate dev",
+    "db:view": "yarn prisma-cli studio",
     "jest": "NODE_ENV=test jest --max-old-space-size=8192 --passWithNoTests --runInBand --no-cache --no-coverage",
     "test": "yarn jest --force-exit",
     "test:watch": "yarn test --watch",
@@ -25,6 +26,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
+    "express-validator": "^6.14.2",
     "module-alias": "^2.2.2"
   },
   "devDependencies": {
