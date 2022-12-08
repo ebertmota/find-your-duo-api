@@ -1,8 +1,6 @@
 import { Controller } from '@/application/controllers';
 import { ServerError } from '@/application/errors';
 import { HttpResponse } from '@/application/protocols';
-import { mocked } from 'jest-mock';
-import { ValidationComposite } from '@/application/validation';
 
 jest.mock('@/application/validation/composite');
 
@@ -22,23 +20,6 @@ describe('Controller', () => {
 
   beforeEach(() => {
     sut = new ControllerStub();
-  });
-
-  it('should return 400 if validation fails', async () => {
-    const error = new Error('validation fails');
-
-    const ValidationCompositeSpy = jest.fn().mockImplementationOnce(() => ({
-      validate: jest.fn().mockReturnValueOnce(error),
-    }));
-    mocked(ValidationComposite).mockImplementationOnce(ValidationCompositeSpy);
-
-    const result = await sut.handle('any_value');
-
-    expect(ValidationCompositeSpy).toHaveBeenCalledWith([]);
-    expect(result).toEqual({
-      statusCode: 400,
-      data: error,
-    });
   });
 
   it('should return 500 if perform throws', async () => {
