@@ -10,6 +10,7 @@ type GenerateDatabaseURLInput = {
 
 export class PgConnection {
   private static instance?: PgConnection;
+  private databaseUrl?: string;
   public connection?: PrismaClient;
 
   private constructor() {}
@@ -31,10 +32,11 @@ export class PgConnection {
   }
 
   async connect(): Promise<void> {
+    this.databaseUrl = PgConnection.generateDatabaseURL();
     if (this.connection === undefined) {
       this.connection = new PrismaClient({
         datasources: {
-          db: { url: PgConnection.generateDatabaseURL() },
+          db: { url: this.databaseUrl },
         },
       });
       await this.connection.$connect();
