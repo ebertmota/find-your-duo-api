@@ -23,6 +23,7 @@ module.exports = {
     '!<rootDir>/src/domain/contracts/**',
     '!<rootDir>/src/application/errors/**',
     '!<rootDir>/src/application/helpers/**',
+    '!<rootDir>/src/application/protocols/**',
     '!<rootDir>/src/infra/postgres/helpers/**',
     '!<rootDir>/src/types.ts',
   ],
