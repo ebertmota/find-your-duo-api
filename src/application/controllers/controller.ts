@@ -10,7 +10,6 @@ export abstract class Controller {
     try {
       return await this.perform(input);
     } catch (err) {
-      console.log(err);
       return serverError(err);
     }
   }
