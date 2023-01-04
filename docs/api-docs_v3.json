@@ -1,0 +1,159 @@
+{
+  "openapi": "3.0.0",
+  "externalDocs": {
+    "description": "api-docs.json",
+    "url": "/api-spec"
+  },
+  "info": {
+    "title": "FindYourDuo API",
+    "version": "1.0",
+    "license": {
+      "name": " "
+    },
+    "description": "An REST API for Find your duo solution"
+  },
+  "paths": {
+    "/ads": {
+      "get": {
+        "summary": "/ads",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Ad"
+        ]
+      }
+    },
+    "/ads/{id}/discord": {
+      "get": {
+        "summary": "/ads/{id}/discord",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Ad"
+        ]
+      }
+    },
+    "/games": {
+      "get": {
+        "summary": "/games",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "bannerUrl": {
+                        "type": "string"
+                      },
+                      "count": {
+                        "type": "object",
+                        "properties": {
+                          "ads": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "bannerUrl",
+                      "count"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "304": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Game"
+        ]
+      }
+    },
+    "/games/{id}/ads": {
+      "post": {
+        "summary": "/games/{id}/ads",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Ad",
+          "Game"
+        ]
+      },
+      "get": {
+        "summary": "/games/{id}/ads",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {},
+        "tags": [
+          "Ad",
+          "Game"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Ad"
+    },
+    {
+      "name": "Game"
+    }
+  ],
+  "servers": [
+    {
+      "url": "http://localhost:3333"
+    }
+  ]
+}
