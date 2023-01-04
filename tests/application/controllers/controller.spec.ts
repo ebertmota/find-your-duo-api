@@ -2,8 +2,6 @@ import { Controller } from '@/application/controllers';
 import { ServerError } from '@/application/errors';
 import { HttpResponse } from '@/application/protocols';
 
-jest.mock('@/application/validation/composite');
-
 class ControllerStub extends Controller {
   result: HttpResponse = {
     statusCode: 200,
