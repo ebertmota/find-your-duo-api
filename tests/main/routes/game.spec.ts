@@ -34,7 +34,7 @@ describe('Game routes', () => {
           name: 'Testing ad',
           yearsPlaying: 2,
           discord: 'testUser#4242',
-          weekDays: ['m', 's'],
+          weekDays: ['monday', 'sunday', 'tuesday'],
           hourStart: '09:00',
           hourEnd: '12:00',
           useVoiceChannel: true,
