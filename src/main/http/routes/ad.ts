@@ -6,7 +6,7 @@ import {
 } from '@/main/factories/application/controllers';
 import { checkSchema } from 'express-validator';
 
-export default (router: Router): void => {
+export const adRoutes = (router: Router): void => {
   router.get('/ads', adaptRoute(makeListAdsController()));
   router.get(
     '/ads/:id/discord',

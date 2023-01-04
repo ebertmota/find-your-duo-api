@@ -1,13 +1,11 @@
-import { Router, Express } from 'express';
-import { readdirSync } from 'fs';
-import { join } from 'path';
+import { Express, Router } from 'express';
+import { adRoutes, gameRoutes } from '@/main/http/routes';
 
 export const setupRoutes = (app: Express): void => {
+  const appRoutes = [adRoutes, gameRoutes];
+
   const router = Router();
-  readdirSync(join(__dirname, '../routes'))
-    .filter(file => !file.endsWith('.map'))
-    .map(async file => {
-      (await import(`../routes/${file}`)).default(router);
-    });
+  appRoutes.forEach(route => route(router));
+
   app.use(router);
 };
