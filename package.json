@@ -26,6 +26,7 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
+    "express-oas-generator": "^1.0.45",
     "express-validator": "^6.14.2",
     "module-alias": "^2.2.2"
   },
