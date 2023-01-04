@@ -31,11 +31,9 @@ const games = [
 ];
 
 export const seedGames = async (): Promise<void> => {
-  for await (const game of games) {
-    await prisma.game.create({
-      data: game
-    })
-  }
+  await prisma.game.createMany({
+    data: games
+  })
 };
 seedGames();
 
