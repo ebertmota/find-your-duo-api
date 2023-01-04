@@ -3,6 +3,7 @@ export const getEnvVar = (env: string): string => {
 };
 
 export const env = {
+  node: getEnvVar('NODE_ENV'),
   postgres: {
     host: getEnvVar('POSTGRESQL_HOST'),
     password: getEnvVar('POSTGRESQL_PASSWORD'),
